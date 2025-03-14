@@ -11,4 +11,5 @@ python-dotenv>=1.0.0
 azureml-mlflow>=1.53.0
 keyrings.alt
 python-dotenv
+marshmallow==3.23.2
 
