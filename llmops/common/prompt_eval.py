@@ -141,6 +141,9 @@ def prepare_and_execute(
 
         env_vars = resolve_env_vars(experiment.base_path, logger)
 
+        env_vars["PF_LINE_TIMEOUT_SEC"] = "2000"
+        env_vars["PF_BATCH_TIMEOUT_SEC"] = "2000"
+
         dataframes = []
         metrics = []
 
