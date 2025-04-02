@@ -71,7 +71,7 @@ from promptflow.azure import PFClient as PFClientAzure
 from azure.ai.ml import MLClient
 from azure.identity import DefaultAzureCredential
 
-logger = llmops_logger("prompt_pipeline")
+logger = llmops_logger("promptflow",)
 
 
 def check_dictionary_contained(ref_dict, dict_list):
@@ -193,7 +193,8 @@ def prepare_and_execute(
             credential=DefaultAzureCredential(),
             subscription_id=config.subscription_id,
             workspace_name=config.workspace_name,
-            resource_group_name=config.resource_group_name
+            resource_group_name=config.resource_group_name,
+            logging_enable=True
         )
         if ml_client is not None:
             wrapper = ObjectWrapper(pf=pf, ml_client=ml_client)
