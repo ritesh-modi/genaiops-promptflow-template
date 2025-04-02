@@ -54,6 +54,7 @@ import pandas as pd
 from dotenv import load_dotenv
 from enum import Enum
 from typing import Optional
+import time
 
 from llmops.common.common import (
     resolve_flow_type,
@@ -71,7 +72,7 @@ from promptflow.azure import PFClient as PFClientAzure
 from azure.ai.ml import MLClient
 from azure.identity import DefaultAzureCredential
 
-logger = llmops_logger("prompt_pipeline")
+logger = llmops_logger("promptflow",)
 
 
 def check_dictionary_contained(ref_dict, dict_list):
@@ -193,7 +194,8 @@ def prepare_and_execute(
             credential=DefaultAzureCredential(),
             subscription_id=config.subscription_id,
             workspace_name=config.workspace_name,
-            resource_group_name=config.resource_group_name
+            resource_group_name=config.resource_group_name,
+            logging_enable=True
         )
         if ml_client is not None:
             wrapper = ObjectWrapper(pf=pf, ml_client=ml_client)
@@ -297,7 +299,7 @@ def prepare_and_execute(
                                 },
                                 resources=runtime_resources,
                                 runtime=experiment.runtime,
-                                stream=True,
+                                stream=False,
                             )
                         elif flow_type == FlowTypeOption.CLASS_FLOW:
                             run = pf.run(
@@ -320,12 +322,12 @@ def prepare_and_execute(
                                 resources=runtime_resources,
                                 runtime=experiment.runtime,
                                 init=params_dict,
-                                stream=True,
+                                stream=False,
                             )
                         else:
                             raise ValueError("Invalid flow type")
                         run._experiment_name = experiment.name
-
+                        time.sleep(600)
                         # Execute the run
                         logger.info(
                             f"Starting run '{run.name}'. This can take time.",
@@ -388,7 +390,7 @@ def prepare_and_execute(
                     tags={} if not build_id else {"build_id": build_id},
                     resources=runtime_resources,
                     runtime=experiment.runtime,
-                    stream=True,
+                    stream=False,
                 )
             elif flow_type == FlowTypeOption.CLASS_FLOW:
                 run = pf.run(
@@ -408,11 +410,11 @@ def prepare_and_execute(
                     resources=runtime_resources,
                     runtime=experiment.runtime,
                     init=params_dict,
-                    stream=True,
+                    stream=False,
                 )
             run._experiment_name = experiment.name
             print(run)
-
+            time.sleep(600)
             # Execute the run
             logger.info(
                 f"Starting run '{run.name}' in Azure ML. This can take time.",

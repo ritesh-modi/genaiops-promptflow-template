@@ -112,7 +112,8 @@ def prepare_and_execute(
             credential=DefaultAzureCredential(),
             subscription_id=config.subscription_id,
             workspace_name=config.workspace_name,
-            resource_group_name=config.resource_group_name
+            resource_group_name=config.resource_group_name,
+            logging_enable=True
         )
 
         wrapper = ObjectWrapper(pf=pf, ml_client=ml_client)
