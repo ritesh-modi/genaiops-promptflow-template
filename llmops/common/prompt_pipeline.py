@@ -298,7 +298,7 @@ def prepare_and_execute(
                                 },
                                 resources=runtime_resources,
                                 runtime=experiment.runtime,
-                                stream=True,
+                                stream=False,
                             )
                         elif flow_type == FlowTypeOption.CLASS_FLOW:
                             run = pf.run(
@@ -321,7 +321,7 @@ def prepare_and_execute(
                                 resources=runtime_resources,
                                 runtime=experiment.runtime,
                                 init=params_dict,
-                                stream=True,
+                                stream=False,
                             )
                         else:
                             raise ValueError("Invalid flow type")
@@ -389,7 +389,7 @@ def prepare_and_execute(
                     tags={} if not build_id else {"build_id": build_id},
                     resources=runtime_resources,
                     runtime=experiment.runtime,
-                    stream=True,
+                    stream=False,
                 )
             elif flow_type == FlowTypeOption.CLASS_FLOW:
                 run = pf.run(
@@ -409,7 +409,7 @@ def prepare_and_execute(
                     resources=runtime_resources,
                     runtime=experiment.runtime,
                     init=params_dict,
-                    stream=True,
+                    stream=False,
                 )
             run._experiment_name = experiment.name
             print(run)
