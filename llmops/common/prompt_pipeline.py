@@ -54,6 +54,7 @@ import pandas as pd
 from dotenv import load_dotenv
 from enum import Enum
 from typing import Optional
+import time
 
 from llmops.common.common import (
     resolve_flow_type,
@@ -326,7 +327,7 @@ def prepare_and_execute(
                         else:
                             raise ValueError("Invalid flow type")
                         run._experiment_name = experiment.name
-
+                        time.sleep(600)
                         # Execute the run
                         logger.info(
                             f"Starting run '{run.name}'. This can take time.",
@@ -413,7 +414,7 @@ def prepare_and_execute(
                 )
             run._experiment_name = experiment.name
             print(run)
-
+            time.sleep(600)
             # Execute the run
             logger.info(
                 f"Starting run '{run.name}' in Azure ML. This can take time.",
