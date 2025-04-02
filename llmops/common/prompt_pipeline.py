@@ -212,7 +212,6 @@ def prepare_and_execute(
     env_vars["PF_LINE_TIMEOUT_SEC"] = "2000"
     env_vars["PF_BATCH_TIMEOUT_SEC"] = "2000"
 
-
     logger.info(f"Running experiment {experiment.name}")
     for mapped_dataset in experiment.datasets:
         logger.info(f"Using dataset {mapped_dataset.dataset.source}")
