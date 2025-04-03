@@ -414,12 +414,11 @@ def prepare_and_execute(
                 )
             run._experiment_name = experiment.name
             print(run)
-            time.sleep(600)
             # Execute the run
             logger.info(
                 f"Starting run '{run.name}' in Azure ML. This can take time.",
             )
-
+            time.sleep(600)
             df_result = pf.get_details(run=run)
             run_ids.append(str(run.name))
             logger.info(f"Run {run.name} completed with status {run.status}")

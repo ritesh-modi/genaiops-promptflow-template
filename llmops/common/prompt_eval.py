@@ -24,6 +24,7 @@ from dotenv import load_dotenv
 from typing import Optional
 import inspect
 import importlib
+import time
 
 from azure.identity import DefaultAzureCredential
 
@@ -250,7 +251,7 @@ def prepare_and_execute(
                                 },
                             runtime=experiment.runtime,
                             resources=runtime_resources,
-                            stream=True,
+                            stream=False,
                         )
                     elif flow_type == FlowTypeOption.CLASS_FLOW:
                         run = pf.run(
@@ -267,7 +268,7 @@ def prepare_and_execute(
                             runtime=experiment.runtime,
                             resources=runtime_resources,
                             init=params_dict,
-                            stream=True,
+                            stream=False,
                         )
                     else:
                         raise ValueError("Invalid flow type")
@@ -278,7 +279,7 @@ def prepare_and_execute(
                 logger.info(
                     f"Starting run '{run.name}'. This can take a long time.",
                 )
-
+                time.sleep(600)
                 eval_run_ids.append(run.name)
 
                 df_result = pf.get_details(run=run)
