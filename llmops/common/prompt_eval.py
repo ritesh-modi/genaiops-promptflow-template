@@ -279,7 +279,7 @@ def prepare_and_execute(
                 logger.info(
                     f"Starting run '{run.name}'. This can take a long time.",
                 )
-                time.sleep(300)
+                time.sleep(600)
                 eval_run_ids.append(run.name)
 
                 df_result = pf.get_details(run=run)

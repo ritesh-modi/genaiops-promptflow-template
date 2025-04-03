@@ -327,7 +327,7 @@ def prepare_and_execute(
                         else:
                             raise ValueError("Invalid flow type")
                         run._experiment_name = experiment.name
-                        time.sleep(300)
+                        time.sleep(600)
                         # Execute the run
                         logger.info(
                             f"Starting run '{run.name}'. This can take time.",
@@ -418,7 +418,7 @@ def prepare_and_execute(
             logger.info(
                 f"Starting run '{run.name}' in Azure ML. This can take time.",
             )
-            time.sleep(300)
+            time.sleep(600)
             df_result = pf.get_details(run=run)
             run_ids.append(str(run.name))
             logger.info(f"Run {run.name} completed with status {run.status}")
