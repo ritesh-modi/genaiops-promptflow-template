@@ -251,7 +251,7 @@ def prepare_and_execute(
                                 },
                             runtime=experiment.runtime,
                             resources=runtime_resources,
-                            stream=True,
+                            stream=False,
                         )
                     elif flow_type == FlowTypeOption.CLASS_FLOW:
                         run = pf.run(
@@ -268,7 +268,7 @@ def prepare_and_execute(
                             runtime=experiment.runtime,
                             resources=runtime_resources,
                             init=params_dict,
-                            stream=True,
+                            stream=False,
                         )
                     else:
                         raise ValueError("Invalid flow type")
