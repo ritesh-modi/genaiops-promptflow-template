@@ -24,6 +24,7 @@ from dotenv import load_dotenv
 from typing import Optional
 import inspect
 import importlib
+import time
 
 from azure.identity import DefaultAzureCredential
 
@@ -278,7 +279,7 @@ def prepare_and_execute(
                 logger.info(
                     f"Starting run '{run.name}'. This can take a long time.",
                 )
-
+                time.sleep(300)
                 eval_run_ids.append(run.name)
 
                 df_result = pf.get_details(run=run)
